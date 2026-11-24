@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T03:39:49.255Z",
+  "updatedAt": "2026-11-24T03:50:05.622Z",
   "games": [
     {
       "id": "gm_3d68c94eb510",
@@ -22,7 +22,7 @@
         "sizeBytes": 377113,
         "sha256": "5627d41dd27487bb0761274d29fb7c777ec78c47ea6dd47167c75fb27a07eed5"
       },
-      "downloads": 2,
+      "downloads": 3,
       "createdAt": "2026-11-24T03:34:58.028Z",
       "updatedAt": "2026-11-24T03:35:50.262Z"
     }
