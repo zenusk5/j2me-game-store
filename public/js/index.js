@@ -14,7 +14,7 @@ function escapeHtml(str) {
 function renderCategories() {
   const categories = [...new Set(allGames.map((g) => g.category).filter(Boolean))];
   const buttons = [
-    `<button class="${activeCategory === '' ? 'active' : ''}" data-cat="">Táº¥t cáº£ (${allGames.length})</button>`,
+    `<button class="${activeCategory === '' ? 'active' : ''}" data-cat="">Tất cả (${allGames.length})</button>`,
     ...categories.map(
       (cat) => `<button class="${activeCategory === cat ? 'active' : ''}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`
     )
@@ -24,7 +24,7 @@ function renderCategories() {
 
 function renderGames(games) {
   if (!games.length) {
-    grid.innerHTML = '<p>ChÆ°a cÃ³ game nÃ o phÃ¹ há»£p.</p>';
+    grid.innerHTML = '<p>Chưa có game nào phù hợp.</p>';
     return;
   }
 
@@ -39,10 +39,10 @@ function renderGames(games) {
           <span class="badge">${escapeHtml(g.category)}</span>
           <h2><a href="/game/${encodeURIComponent(g.slug)}">${escapeHtml(g.name)}</a></h2>
           <p class="desc">${escapeHtml(g.shortDescription)}</p>
-          <div class="meta">v${escapeHtml(g.version)} Â· ${escapeHtml(g.resolution)} Â· ${sizeKB} KB Â· ${g.downloads || 0} lÆ°á»£t táº£i</div>
+          <div class="meta">v${escapeHtml(g.version)} · ${escapeHtml(g.resolution)} · ${sizeKB} KB · ${g.downloads || 0} lượt tải</div>
           <div class="card-actions">
-            <a href="/game/${encodeURIComponent(g.slug)}" class="btn-outline">Chi tiáº¿t</a>
-            <a href="/api/games/download?slug=${encodeURIComponent(g.slug)}" class="btn-primary">Táº£i .JAR</a>
+            <a href="/game/${encodeURIComponent(g.slug)}" class="btn-outline">Chi tiết</a>
+            <a href="/api/games/download?slug=${encodeURIComponent(g.slug)}" class="btn-primary">Tải .JAR</a>
           </div>
         </div>
       </article>
@@ -75,7 +75,7 @@ searchForm.addEventListener('submit', (e) => {
 async function init() {
   const res = await fetch('/api/games/list');
   if (!res.ok) {
-    grid.innerHTML = '<p>Lá»—i táº£i dá»¯ liá»‡u tá»« mÃ¡y chá»§.</p>';
+    grid.innerHTML = '<p>Lỗi tải dữ liệu từ máy chủ.</p>';
     return;
   }
   const data = await res.json();

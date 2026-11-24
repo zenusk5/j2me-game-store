@@ -32,7 +32,7 @@ async function checkSession() {
   if (res.ok) {
     const data = await res.json();
     document.getElementById('session-info').textContent =
-      `Admin: ${data.username} (háº¿t háº¡n: ${new Date(data.expiresAt).toLocaleTimeString('vi-VN')})`;
+      `Admin: ${data.username} (hết hạn: ${new Date(data.expiresAt).toLocaleTimeString('vi-VN')})`;
     loginView.hidden = true;
     dashboardView.hidden = false;
     await loadDashboard();
@@ -56,12 +56,12 @@ async function loadDashboard() {
     <tr>
       <td><strong>${escapeHtml(g.name)}</strong><br/><small>/${escapeHtml(g.slug)}</small></td>
       <td>${escapeHtml(g.category)}</td>
-      <td>v${escapeHtml(g.version)} Â· ${escapeHtml(g.resolution)}</td>
+      <td>v${escapeHtml(g.version)} · ${escapeHtml(g.resolution)}</td>
       <td>${formatBytes(g.jar?.sizeBytes)}</td>
       <td>${g.downloads || 0}</td>
       <td>
-        <button data-edit="${g.id}">Sá»­a</button>
-        <button data-del="${g.id}" class="btn-danger">XÃ³a</button>
+        <button data-edit="${g.id}">Sửa</button>
+        <button data-del="${g.id}" class="btn-danger">Xóa</button>
       </td>
     </tr>
   `).join('');
@@ -83,7 +83,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   });
   const data = await res.json();
   if (!res.ok) {
-    errEl.textContent = data.error || 'ÄÄƒng nháº­p tháº¥t báº¡i.';
+    errEl.textContent = data.error || 'Đăng nhập thất bại.';
     return;
   }
   await checkSession();
@@ -97,7 +97,7 @@ document.getElementById('btn-logout').addEventListener('click', async () => {
 document.getElementById('btn-open-add').addEventListener('click', () => {
   gameForm.reset();
   document.getElementById('f-id').value = '';
-  document.getElementById('modal-title').textContent = 'ThÃªm game má»›i';
+  document.getElementById('modal-title').textContent = 'Thêm game mới';
   document.getElementById('jar-req-note').textContent = '*';
   document.getElementById('form-status').textContent = '';
   modal.showModal();
@@ -122,8 +122,8 @@ tbody.addEventListener('click', async (e) => {
     document.getElementById('f-language').value = g.language;
     document.getElementById('f-short').value = g.shortDescription;
     document.getElementById('f-full').value = g.fullDescription;
-    document.getElementById('modal-title').textContent = `Chá»‰nh sá»­a: ${g.name}`;
-    document.getElementById('jar-req-note').textContent = '(Ä‘á»ƒ trá»‘ng náº¿u giá»¯ file cÅ©)';
+    document.getElementById('modal-title').textContent = `Chỉnh sửa: ${g.name}`;
+    document.getElementById('jar-req-note').textContent = '(để trống nếu giữ file cũ)';
     document.getElementById('form-status').textContent = '';
     modal.showModal();
   }
@@ -132,7 +132,7 @@ tbody.addEventListener('click', async (e) => {
     const g = cachedGames.find((x) => x.id === delId);
     if (!g) return;
     const confirmed = window.confirm(
-      `XÃ¡c nháº­n xÃ³a game "${g.name}" vÃ  file "${g.jar?.fileName}" khá»i GitHub? HÃ nh Ä‘á»™ng nÃ y khÃ´ng thá»ƒ hoÃ n tÃ¡c.`
+      `Xác nhận xóa game "${g.name}" và file "${g.jar?.fileName}" khỏi GitHub? Hành động này không thể hoàn tác.`
     );
     if (!confirmed) return;
 
@@ -142,10 +142,10 @@ tbody.addEventListener('click', async (e) => {
     });
     const data = await res.json();
     if (!res.ok) {
-      alert(data.error || 'XÃ³a game tháº¥t báº¡i.');
+      alert(data.error || 'Xóa game thất bại.');
       return;
     }
-    alert(`ÄÃ£ xÃ³a thÃ nh cÃ´ng game "${data.deletedName}".`);
+    alert(`Đã xóa thành công game "${data.deletedName}".`);
     await loadDashboard();
   }
 });
@@ -162,22 +162,22 @@ gameForm.addEventListener('submit', async (e) => {
   const shotInputs = Array.from(document.getElementById('f-shots').files || []).slice(0, 4);
 
   if (!isEdit && !jarInput) {
-    statusEl.textContent = 'Vui lÃ²ng chá»n file .jar.';
+    statusEl.textContent = 'Vui lòng chọn file .jar.';
     return;
   }
   if (jarInput) {
     if (!jarInput.name.toLowerCase().endsWith('.jar')) {
-      statusEl.textContent = 'File game pháº£i cÃ³ Ä‘uÃ´i .jar.';
+      statusEl.textContent = 'File game phải có đuôi .jar.';
       return;
     }
     if (jarInput.size > 2 * 1024 * 1024) {
-      statusEl.textContent = 'File JAR vÆ°á»£t quÃ¡ giá»›i háº¡n 2MB.';
+      statusEl.textContent = 'File JAR vượt quá giới hạn 2MB.';
       return;
     }
   }
 
   submitBtn.disabled = true;
-  statusEl.textContent = 'Äang upload lÃªn GitHub vÃ  cáº­p nháº­t dá»¯ liá»‡u...';
+  statusEl.textContent = 'Đang upload lên GitHub và cập nhật dữ liệu...';
 
   try {
     const payload = {
@@ -211,7 +211,7 @@ gameForm.addEventListener('submit', async (e) => {
       body: JSON.stringify(payload)
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'LÆ°u tháº¥t báº¡i.');
+    if (!res.ok) throw new Error(data.error || 'Lưu thất bại.');
 
     modal.close();
     await loadDashboard();
