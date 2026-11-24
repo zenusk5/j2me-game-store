@@ -1,7 +1,29 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T03:50:05.622Z",
+  "updatedAt": "2026-11-24T04:15:00.669Z",
   "games": [
+    {
+      "id": "gm_5a92c4525a7d",
+      "name": "Cau Vang 2",
+      "slug": "cau-vang-2",
+      "category": "Phiêu lưu",
+      "shortDescription": "http://gamehub.pro",
+      "fullDescription": "Cau Vang 2 phiên bản 1.0.0 phát hành bởi Thanhdaik.\nHỗ trợ độ phân giải 240x320, ngôn ngữ Tiếng Anh. Tương thích tốt với điện thoại Java Nokia S40/S60 và trình giả lập J2ME Loader / KEmulator.",
+      "version": "1.0.0",
+      "resolution": "240x320",
+      "language": "Tiếng Anh",
+      "cover": "https://raw.githubusercontent.com/zenusk5/j2me-game-store/main/public/assets/covers/cau-vang-2.png",
+      "screenshots": [],
+      "jar": {
+        "fileName": "cau-vang-2.jar",
+        "path": "games/cau-vang-2.jar",
+        "sizeBytes": 527505,
+        "sha256": "e9d905778f38da663408ccf0dcca6e379e67193a120b75a4b16ab6fde26c88c8"
+      },
+      "downloads": 0,
+      "createdAt": "2026-11-24T04:15:00.668Z",
+      "updatedAt": "2026-11-24T04:15:00.668Z"
+    },
     {
       "id": "gm_3d68c94eb510",
       "name": "BounceTales",
