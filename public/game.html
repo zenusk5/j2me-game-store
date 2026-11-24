@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi tiết game - J2ME Game Store</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand">← Trang chủ J2ME Store</a>
+    </div>
+  </header>
+
+  <main class="container" id="game-detail">
+    <article class="detail-box">
+      <div class="detail-top">
+        <img id="game-cover" src="" alt="Ảnh bìa game" class="detail-cover" />
+        <div class="detail-info">
+          <h1 id="game-title">Đang tải...</h1>
+          <p id="game-meta" class="meta"></p>
+          <a id="btn-download" href="#" class="btn-primary btn-large">Tải file .JAR</a>
+        </div>
+      </div>
+
+      <section class="detail-section">
+        <h2>Mô tả trò chơi</h2>
+        <p id="game-desc" class="full-desc"></p>
+      </section>
+
+      <section class="detail-section">
+        <h2>Ảnh chụp màn hình</h2>
+        <div id="game-screenshots" class="screenshots-grid"></div>
+      </section>
+    </article>
+  </main>
+
+  <script src="/js/game.js" type="module"></script>
+</body>
+</html>

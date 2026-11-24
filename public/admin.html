@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản trị J2ME Game Store</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+  <section id="login-view" class="card login-box">
+    <h1>Đăng nhập Admin</h1>
+    <form id="login-form">
+      <label>Tài khoản
+        <input type="text" id="login-user" value="admin" required />
+      </label>
+      <label>Mật khẩu
+        <input type="password" id="login-pass" required autocomplete="current-password" />
+      </label>
+      <button type="submit">Đăng nhập</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </section>
+
+  <main id="dashboard-view" hidden>
+    <header class="topbar">
+      <h1>J2ME Store Admin</h1>
+      <div>
+        <span id="session-info"></span>
+        <button id="btn-logout" class="btn-secondary">Đăng xuất</button>
+      </div>
+    </header>
+
+    <section class="stats-grid">
+      <div class="stat-card"><span>Tổng số game</span><strong id="stat-count">0</strong></div>
+      <div class="stat-card"><span>Tổng dung lượng kho</span><strong id="stat-size">0 KB</strong></div>
+      <div class="stat-card"><span>Tổng lượt tải</span><strong id="stat-downloads">0</strong></div>
+    </section>
+
+    <section class="actions-bar">
+      <h2>Danh sách game</h2>
+      <button id="btn-open-add">+ Thêm game mới</button>
+    </section>
+
+    <table class="game-table">
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Thể loại</th>
+          <th>Phiên bản / Màn hình</th>
+          <th>Dung lượng</th>
+          <th>Lượt tải</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="game-tbody"></tbody>
+    </table>
+  </main>
+
+  <dialog id="game-modal">
+    <form id="game-form">
+      <h2 id="modal-title">Thêm game mới</h2>
+      <input type="hidden" id="f-id" />
+
+      <div class="form-grid">
+        <label>Tên game * <input id="f-name" required /></label>
+        <label>Slug * <input id="f-slug" required placeholder="vd: ninja-school" /></label>
+        <label>Thể loại * <input id="f-category" required placeholder="Nhập vai, Hành động..." /></label>
+        <label>Phiên bản * <input id="f-version" required placeholder="1.0.0" /></label>
+        <label>Độ phân giải * <input id="f-resolution" required placeholder="240x320 hoặc Multi" /></label>
+        <label>Ngôn ngữ * <input id="f-language" required value="Tiếng Việt" /></label>
+      </div>
+
+      <label>Mô tả ngắn * <textarea id="f-short" rows="2" required></textarea></label>
+      <label>Mô tả chi tiết <textarea id="f-full" rows="4"></textarea></label>
+
+      <div class="form-grid">
+        <label>Ảnh bìa (PNG/JPG/WEBP, tối đa 800KB)
+          <input type="file" id="f-cover" accept="image/png,image/jpeg,image/webp" />
+        </label>
+        <label>Ảnh chụp trong game (tối đa 4 ảnh)
+          <input type="file" id="f-shots" accept="image/png,image/jpeg,image/webp" multiple />
+        </label>
+        <label>File JAR (tối đa 2MB) <span id="jar-req-note">*</span>
+          <input type="file" id="f-jar" accept=".jar" />
+        </label>
+      </div>
+
+      <p id="form-status" class="status"></p>
+      <div class="modal-actions">
+        <button type="button" id="btn-close-modal" class="btn-secondary">Hủy</button>
+        <button type="submit" id="btn-submit-game">Upload & Lưu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/js/admin.js" type="module"></script>
+</body>
+</html>
